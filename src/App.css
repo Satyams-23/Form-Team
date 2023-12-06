@@ -114,3 +114,7 @@ button:hover {
   margin-bottom: 5px;
   color: #555;
 }
+.ft{
+  display: flex;
+  justify-content: center;
+}

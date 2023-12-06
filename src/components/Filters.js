@@ -7,6 +7,7 @@ const Filters = ({ onFilterChange, users }) => {
 
   return (
     <>
+      <h1 className="ft">FORM-TEAM</h1>
       <div className="container border m-auto p-2 bg-success rounded d-none d-lg-block" ///hide on screen smaller than 992px
       >
         <div className="row  m-auto ">
@@ -70,7 +71,7 @@ const Filters = ({ onFilterChange, users }) => {
           </div>
         </div>
       </div>
-      
+
       <div className="container border m-auto p-2 bg-success rounded d-lg-none" //hide on screen larger than 992px
       >
         <div className="row  m-auto ">
