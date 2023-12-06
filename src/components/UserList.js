@@ -3,7 +3,7 @@ import UserCard from "./UserCard";
 
 const UserList = ({ users, onAddToTeam, filters }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const usersPerPage = 5;
+  const usersPerPage = 20;
 
   const indexOfLastUser = currentPage * usersPerPage;
   const indexOfFirstUser = indexOfLastUser - usersPerPage;
