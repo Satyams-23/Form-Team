@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import UserCard from "./UserCard";
+import UserCard from "./UserCard.js";
 
-const UserList = ({ users, onAddToTeam, filters }) => {
+const UserList = ({ users, onAddToTeam }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const usersPerPage = 5;
 
@@ -88,9 +88,8 @@ const UserList = ({ users, onAddToTeam, filters }) => {
           </li>
           {renderPageNumbers()}
           <li
-            className={`page-item ${
-              currentPage === totalPages ? "disabled" : ""
-            }`}
+            className={`page-item ${currentPage === totalPages ? "disabled" : ""
+              }`}
           >
             <button
               className="page-link"

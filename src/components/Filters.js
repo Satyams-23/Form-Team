@@ -1,34 +1,37 @@
 import React from "react";
 
+
 const Filters = ({ onFilterChange, users }) => {
-  const uniqueDomains = users
+  // Ensure that users is an array before using map
+  const uniqueDomains = Array.isArray(users)
     ? Array.from(new Set(users.map((user) => user.domain)))
     : [];
+
 
   return (
     <>
       <h1 className="ft">FORM-TEAM</h1>
-      <div className="container border m-auto p-2 bg-success rounded d-none d-lg-block" ///hide on screen smaller than 992px
-      >
+      <div className="container border m-auto p-2 bg-success rounded d-none d-lg-block">
+
         <div className="row  m-auto ">
-          <div class="col input-group">
-            <span class="input-group-text" id="inputGroup-sizing-sm">
+          <div className="col input-group">
+            <span className="input-group-text" id="inputGroup-sizing-sm">
               Name
             </span>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-sm"
               onChange={(e) => onFilterChange("name", e.target.value)}
             />
           </div>
-          <div class="col input-group ">
-            <label class="input-group-text" for="inputGroupSelect01">
+          <div className="col input-group ">
+            <label className="input-group-text" htmlFor="inputGroupSelect01">
               Domain:
             </label>
             <select
-              class="form-select"
+              className="form-select"
               id="inputGroupSelect01"
               onChange={(e) => onFilterChange("domain", e.target.value)}
             >
@@ -38,15 +41,16 @@ const Filters = ({ onFilterChange, users }) => {
                   {domain}
                 </option>
               ))}
+
             </select>
           </div>
 
-          <div class="col input-group ">
-            <label class="input-group-text" for="inputGroupSelect01">
+          <div className="col input-group ">
+            <label className="input-group-text" for="inputGroupSelect01">
               Gender :
             </label>
             <select
-              class="form-select"
+              className="form-select"
               id="inputGroupSelect01"
               onChange={(e) => onFilterChange("gender", e.target.value)}
             >
@@ -55,12 +59,12 @@ const Filters = ({ onFilterChange, users }) => {
               <option value="Female">Female</option>
             </select>
           </div>
-          <div class="col input-group">
-            <label class="input-group-text" for="inputGroupSelect01">
+          <div className="col input-group">
+            <label className="input-group-text" for="inputGroupSelect01">
               Availability :
             </label>
             <select
-              class="form-select"
+              className="form-select"
               id="inputGroupSelect01"
               onChange={(e) => onFilterChange("available", e.target.value)}
             >
@@ -72,27 +76,28 @@ const Filters = ({ onFilterChange, users }) => {
         </div>
       </div>
 
-      <div className="container border m-auto p-2 bg-success rounded d-lg-none" //hide on screen larger than 992px
-      >
+
+      <div className="container border m-auto p-2 bg-success rounded d-lg-none">
+
         <div className="row  m-auto ">
-          <div class=" input-group mb-3">
-            <span class="input-group-text" id="inputGroup-sizing-sm">
+          <div className=" input-group mb-3">
+            <span className="input-group-text" id="inputGroup-sizing-sm">
               Name
             </span>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-sm"
               onChange={(e) => onFilterChange("name", e.target.value)}
             />
           </div>
-          <div class=" input-group mb-3 ">
-            <label class="input-group-text" for="inputGroupSelect01">
+          <div className=" input-group mb-3 ">
+            <label className="input-group-text" htmlFor="inputGroupSelect01">
               Domain:
             </label>
             <select
-              class="form-select"
+              className="form-select"
               id="inputGroupSelect01"
               onChange={(e) => onFilterChange("domain", e.target.value)}
             >
@@ -105,12 +110,12 @@ const Filters = ({ onFilterChange, users }) => {
             </select>
           </div>
 
-          <div class=" input-group mb-3 ">
-            <label class="input-group-text" for="inputGroupSelect01">
+          <div className=" input-group mb-3 ">
+            <label className="input-group-text" for="inputGroupSelect01">
               Gender :
             </label>
             <select
-              class="form-select"
+              className="form-select"
               id="inputGroupSelect01"
               onChange={(e) => onFilterChange("gender", e.target.value)}
             >
@@ -119,12 +124,12 @@ const Filters = ({ onFilterChange, users }) => {
               <option value="Female">Female</option>
             </select>
           </div>
-          <div class=" input-group mb-3">
-            <label class="input-group-text" for="inputGroupSelect01">
+          <div className=" input-group mb-3">
+            <label className="input-group-text" for="inputGroupSelect01">
               Availability :
             </label>
             <select
-              class="form-select"
+              className="form-select"
               id="inputGroupSelect01"
               onChange={(e) => onFilterChange("available", e.target.value)}
             >

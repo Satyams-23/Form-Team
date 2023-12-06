@@ -15,12 +15,19 @@ const App = () => {
     availability: "",
   });
 
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:3001/users");
+        const response = await fetch("https://raw.githubusercontent.com/Satyams-23/Form-Team-/main/db.json");
         const data = await response.json();
-        setUsers(data);
+
+        // Ensure 'users' property exists in the data
+        if (data.users) {
+          setUsers(data.users);
+        } else {
+          console.error("Data format is incorrect. Expected 'users' property in the response.");
+        }
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -29,19 +36,26 @@ const App = () => {
     fetchData();
   }, []);
 
+
   useEffect(() => {
     filterUsers();
   }, [filters, users]);
 
   const filterUsers = () => {
+    if (!Array.isArray(users)) {
+      // Handle the case where users is not an array
+      console.error('Users is not an array:', users);
+      return;
+    }
+
     let filtered = [...users];
 
     const searchValue = filters.name.toLowerCase();
     filtered = filtered.filter(
       (user) =>
-        (user.first_name &&
+        (user?.first_name &&
           user.first_name.toLowerCase().includes(searchValue)) ||
-        (user.last_name && user.last_name.toLowerCase().includes(searchValue))
+        (user?.last_name && user.last_name.toLowerCase().includes(searchValue))
     );
 
     if (filters.domain) {
@@ -69,9 +83,7 @@ const App = () => {
 
     setFilteredUsers(filtered);
   };
-  useEffect(() => {
-    filterUsers();
-  }, [filters, users]);
+
 
   const addToTeam = (user) => {
     if (user.available) {
@@ -94,17 +106,13 @@ const App = () => {
     <>
       <div className="container border p-2 d-none d-lg-block " /////hide on screen smaller than 992px
       >
-        <Filters
-          onFilterChange={(key, value) =>
-            setFilters({ ...filters, [key]: value })
-          }
-          users={users}
-        />
+        <Filters onFilterChange={(key, value) => setFilters({ ...filters, [key]: value })} users={users} />
+
         <div className="row p-2 m-auto ">
           <div className="col  ms-4">
             <UserList users={filteredUsers} onAddToTeam={addToTeam} />
           </div>
-          
+
           <div className="col ms-4">
             <Team team={team} onRemoveMember={removeFromTeam} />
           </div>
@@ -113,12 +121,8 @@ const App = () => {
 
       <div className="container border p-2 d-lg-none /////hide on screen larger than 992px 
       ">
-        <Filters
-          onFilterChange={(key, value) =>
-            setFilters({ ...filters, [key]: value })
-          }
-          users={users}
-        />
+        <Filters onFilterChange={(key, value) => setFilters({ ...filters, [key]: value })} users={users} />
+
         <div className="row p-2 m-auto ">
           <div className="mt-2">
             <Team team={team} onRemoveMember={removeFromTeam} />
