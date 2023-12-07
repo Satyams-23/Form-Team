@@ -15,26 +15,28 @@ const App = () => {
     availability: "",
   });
 
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
+ useEffect(() => {
+    // Function to fetch data
     const fetchData = async () => {
       try {
         const response = await fetch("https://raw.githubusercontent.com/Satyams-23/Form-Team-/main/db.json");
+        
         const data = await response.json();
 
-        // Ensure 'users' property exists in the data
         if (data.users) {
+          // Set the 'users' state with the fetched data
           setUsers(data.users);
         } else {
           console.error("Data format is incorrect. Expected 'users' property in the response.");
         }
+        
+        // Set loading to false once data is fetched
+        setLoading(false);
       } catch (error) {
+        // Handle errors during data fetching
         console.error("Error fetching data:", error);
       }
     };
-
-    fetchData();
-  }, []);
 
 
   useEffect(() => {
